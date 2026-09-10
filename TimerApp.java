@@ -9,6 +9,7 @@ import java.util.TimerTask;
  *   1) Реакция через определённый промежуток времени (delay)
  *   2) Реакция в течение определённого времени (работает N секунд, потом сам себя останавливает)
  *   3) Реакция с указанным периодом (повторяется каждые period мс)
+ * javac TimerApp.java && java TimerApp
  */
 public class TimerApp {
 
@@ -16,7 +17,7 @@ public class TimerApp {
     static class DelayedTask extends TimerTask {
         @Override
         public void run() {
-            System.out.println("[Таймер 1] Сработал через 3 секунды после запуска.");
+            System.out.println("[Timer 1] Worked after 3 seconds from launch");
         }
     }
 
@@ -36,11 +37,11 @@ public class TimerApp {
         public void run() {
             long elapsed = System.currentTimeMillis() - startTime;
             if (elapsed >= durationMs) {
-                System.out.println("[Таймер 2] Время вышло (" + (durationMs / 1000) + " сек) — останавливаюсь.");
+                System.out.println("[Timer 2] Time out (" + (durationMs / 1000) + " sec) — stopping.");
                 ownerTimer.cancel();
                 return;
             }
-            System.out.println("[Таймер 2] Работаю... прошло " + (elapsed / 1000) + " сек.");
+            System.out.println("[Timer 2] Working... done " + (elapsed / 1000) + " sec.");
         }
     }
 
@@ -51,12 +52,12 @@ public class TimerApp {
         @Override
         public void run() {
             counter++;
-            System.out.println("[Таймер 3] Периодический тик #" + counter + " (каждые 2 сек).");
+            System.out.println("[Timer 3] Periodic tic #" + counter + " (every 2 sec).");
         }
     }
 
     public static void main(String[] args) {
-        System.out.println("Старт приложения. Запускаю три таймера...\n");
+        System.out.println("App Start. Launching 3 timers...\n");
 
         // Таймер 1: разовая реакция через 3 секунды
         Timer timer1 = new Timer();
@@ -75,7 +76,7 @@ public class TimerApp {
         shutdownTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println("\n12 секунд прошло — завершаю приложение.");
+                System.out.println("\n12 seconds passed - app stop.");
                 timer1.cancel();
                 timer2.cancel();
                 timer3.cancel();
