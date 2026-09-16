@@ -51,3 +51,39 @@ class CountdownTick extends TimerTask {
         });
     }
 }
+
+// ================================================
+// PART: ALEX - Stops timers and triggers liftoff
+// ================================================
+class Liftoff extends TimerTask {
+    private final Timer countdownTimer, goTimer, liftoffTimer;
+    private final JTextArea output;
+    private final JLabel timerLabel, statusLabel;
+    private final JButton startButton;
+
+    public Liftoff(Timer countdownTimer, Timer goTimer, Timer liftoffTimer,
+                   JTextArea output, JLabel timerLabel, JLabel statusLabel,
+                   JButton startButton) {
+        this.countdownTimer = countdownTimer;
+        this.goTimer = goTimer;
+        this.liftoffTimer = liftoffTimer;
+        this.output = output;
+        this.timerLabel = timerLabel;
+        this.statusLabel = statusLabel;
+        this.startButton = startButton;
+    }
+
+    @Override
+    public void run() {
+        countdownTimer.cancel();
+        goTimer.cancel();
+        liftoffTimer.cancel();
+        Toolkit.getDefaultToolkit().beep();
+        SwingUtilities.invokeLater(() -> {
+            timerLabel.setText("LIFTOFF!");
+            statusLabel.setText("ROCKET LAUNCHED SUCCESSFULLY");
+            output.append("[LIFTOFF] 10 seconds of countdown complete - rocket has launched!\n");
+            startButton.setEnabled(false);
+        });
+    }
+}
