@@ -76,13 +76,15 @@ public class TimerApp extends JFrame {
     }
 
     private void start(JTextField field, int timer) {
-        int seconds = Integer.parseInt(field.getText());
-
-        if (seconds <= 0) return;
-
-        if (timer == 1) logic.startDelayTimer(seconds);
-        if (timer == 2) logic.startDurationTimer(seconds);
-        if (timer == 3) logic.startPeriodicTimer(seconds);
+        try {
+            int seconds = Integer.parseInt(field.getText().trim());
+            if (seconds <= 0) return;
+            if (timer == 1) logic.startDelayTimer(seconds);
+            if (timer == 2) logic.startDurationTimer(seconds);
+            if (timer == 3) logic.startPeriodicTimer(seconds);
+        } catch (NumberFormatException ex) {
+            addMessage("Ошибка: введите целое число");
+        }
     }
 
     private void addMessage(String text) {
