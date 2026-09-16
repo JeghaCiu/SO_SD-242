@@ -18,5 +18,20 @@ public class TimerApp {
         }, 3000);
 
         System.out.println("Start: timers launched...");
+
+        // ================================================
+        // PART: KIRILLOV
+        // Timer 2: reacts repeatedly, at a fixed period
+        // ================================================
+
+        Timer periodicTimer = new Timer();
+        periodicTimer.scheduleAtFixedRate(new TimerTask() {
+            int counter = 0;
+            @Override
+            public void run() {
+                counter++;
+                System.out.println("[Period] Repeated action #" + counter);
+            }
+        }, 0, 2000);
     }
 }
