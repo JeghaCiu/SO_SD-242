@@ -67,7 +67,7 @@ public class TimerLogic {
             }
         }, 0, seconds * 1000L);
     }
-// если ты читаешь это сообщение, то я всё настроил, а не ты
+// если ты читаешь это сообщение, то я всё настроил, а не ты / Всё фигня
     public void stopAllTimers() {
         if (delayTimer != null) delayTimer.cancel();
         if (durationTimer != null) durationTimer.cancel();
