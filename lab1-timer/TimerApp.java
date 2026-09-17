@@ -179,5 +179,5 @@ public class TimerApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(TimerApp::new);
     }
-    //папа и мама костя и я
+    //Press F to pay Respect
 }
