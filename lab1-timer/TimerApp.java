@@ -142,3 +142,4 @@ public class TimerApp {
         startButton.addActionListener(e -> startLaunch());
         resetButton.addActionListener(e -> resetLaunch());
     }
+}
