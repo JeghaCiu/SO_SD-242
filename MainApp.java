@@ -1,7 +1,8 @@
-public class MainApp {
+import javax.swing.SwingUtilities;
 
+public class MainApp {
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             UI app = new UI();
             app.setVisible(true);
         });

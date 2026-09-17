@@ -3,27 +3,26 @@ import java.awt.*;
 
 public class UI extends JFrame {
 
-    private JLabel timeDisplay;
+    private JLabel statusDisplay;
     private JTextArea outputArea;
-    private JButton startPauseButton, resetButton, lapButton;
-    private Stopwatch logic;
+    private JButton delayButton, durationButton, periodicButton, stopAllButton;
+    private Stopwatch logic; // Логика таймеров с колбэками
 
     public UI() {
-        setTitle("Секундомер");
-        setSize(550, 450);
+        setTitle("Мульти-Таймер (Timer & TimerTask)");
+        setSize(550, 480);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+       
         logic = new Stopwatch(new Stopwatch.StopwatchListener() {
             @Override
-            public void onTimeUpdate(int hundredths, int seconds, int minutes) {
-                SwingUtilities.invokeLater(() -> {
-                    timeDisplay.setText(String.format("%02d:%02d:%02d", minutes, seconds, hundredths));
-                });
+            public void onStatusUpdate(String status) {
+                SwingUtilities.invokeLater(() -> statusDisplay.setText(status));
             }
 
             @Override
-            public void onStatusMessage(String message) {
+            public void onLogMessage(String message) {
                 addMessage(message);
             }
         });
@@ -35,59 +34,47 @@ public class UI extends JFrame {
         JPanel main = new JPanel(new BorderLayout(10, 10));
         main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-
-        JLabel title = new JLabel("Секундомер", SwingConstants.CENTER);
+        JLabel title = new JLabel("Приложение с несколькими таймерами", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 18));
         main.add(title, BorderLayout.NORTH);
 
         // Центральная панель
         JPanel centerPanel = new JPanel(new BorderLayout(10, 10));
 
-        // Циферблат 
-        timeDisplay = new JLabel("00:00:00", SwingConstants.CENTER);
-        timeDisplay.setFont(new Font("Monospaced", Font.BOLD, 48));
-        timeDisplay.setForeground(new Color(20, 20, 20));
-        centerPanel.add(timeDisplay, BorderLayout.CENTER);
+        // Дисплей статуса
+        statusDisplay = new JLabel("Готов к работе", SwingConstants.CENTER);
+        statusDisplay.setFont(new Font("Arial", Font.BOLD, 22));
+        statusDisplay.setForeground(new Color(20, 20, 20));
+        centerPanel.add(statusDisplay, BorderLayout.CENTER);
 
-        // панель управления
-        JPanel controls = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        startPauseButton = new JButton("Старт");
-        resetButton = new JButton("Сброс");
-        lapButton = new JButton("Круг");
+        // Панель управления кнопками
+        JPanel controls = new JPanel(new GridLayout(2, 2, 10, 10));
+        
+        delayButton = new JButton("1. Через 3 сек");
+        durationButton = new JButton("2. Работает 5 сек");
+        periodicButton = new JButton("3. Каждые 1.5 сек");
+        stopAllButton = new JButton("Остановить всё");
 
-        startPauseButton.setFont(new Font("Arial", Font.BOLD, 14));
-        resetButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        stopAllButton.setForeground(Color.RED);
 
-        // start/stop
-        startPauseButton.addActionListener(e -> {
-            if (logic.isRunning()) {
-                logic.pause();
-                startPauseButton.setText("Старт");
-            } else {
-                logic.start();
-                startPauseButton.setText("Пауза");
-            }
-        });
+        // Слушатели кнопок 
+        delayButton.addActionListener(e -> logic.startDelayTimer(3));
+        durationButton.addActionListener(e -> logic.startDurationTimer(5));
+        periodicButton.addActionListener(e -> logic.startPeriodicTimer(1.5));
+        stopAllButton.addActionListener(e -> logic.stopAll());
 
-      
-        resetButton.addActionListener(e -> {
-            logic.reset();
-            startPauseButton.setText("Старт");
-        });
-
-        lapButton.addActionListener(e -> logic.lap());
-
-        controls.add(startPauseButton);
-        controls.add(lapButton);
-        controls.add(resetButton);
+        controls.add(delayButton);
+        controls.add(durationButton);
+        controls.add(periodicButton);
+        controls.add(stopAllButton);
 
         centerPanel.add(controls, BorderLayout.SOUTH);
         main.add(centerPanel, BorderLayout.CENTER);
 
-        // консоль
-        outputArea = new JTextArea(8, 40);
+        // Консоль логов
+        outputArea = new JTextArea(9, 40);
         outputArea.setEditable(false);
-        outputArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        outputArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         main.add(new JScrollPane(outputArea), BorderLayout.SOUTH);
         setContentPane(main);
@@ -99,5 +86,4 @@ public class UI extends JFrame {
             outputArea.setCaretPosition(outputArea.getDocument().getLength());
         });
     }
-
 }
