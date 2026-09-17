@@ -8,7 +8,7 @@ public class TimerApp extends JFrame {
     private TimerLogic logic;
 
     public TimerApp() {
-        setTitle("Планировщик задач - Timer Laboratory");
+        setTitle("Таймер");
         setSize(650, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -21,21 +21,21 @@ public class TimerApp extends JFrame {
         JPanel main = new JPanel(new BorderLayout(10, 10));
         main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel title = new JLabel("Планировщик задач с использованием Timer", SwingConstants.CENTER);
+        JLabel title = new JLabel("Таймеры крутые", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         main.add(title, BorderLayout.NORTH);
 
         JPanel controls = new JPanel(new GridLayout(4, 1, 5, 5));
 
-        delayField = new JTextField("5", 5);
-        durationField = new JTextField("10", 5);
-        periodField = new JTextField("2", 5);
+        delayField = new JTextField("1", 5);
+        durationField = new JTextField("15", 5);
+        periodField = new JTextField("5", 5);
 
-        controls.add(createRow("1. Выполнить через:", delayField, e -> start(delayField, 1)));
+        controls.add(createRow("1)Выполнить через:", delayField, e -> start(delayField, 1)));
 
-        controls.add(createRow("2. Работать в течение:", durationField, e -> start(durationField, 2)));
+        controls.add(createRow("2)Работать в течение:", durationField, e -> start(durationField, 2)));
 
-        controls.add(createRow("3. Период:", periodField, e -> start(periodField, 3)));
+        controls.add(createRow("3)Период:", periodField, e -> start(periodField, 3)));
 
         JButton stop = new JButton("Остановить все таймеры");
         stop.addActionListener(e -> logic.stopAllTimers());
@@ -56,7 +56,7 @@ public class TimerApp extends JFrame {
 
     private JPanel createRow(String text, JTextField field, java.awt.event.ActionListener action) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton button = new JButton("Запустить");
+        JButton button = new JButton("Включить таймер");
 
         panel.add(new JLabel(text));
         panel.add(field);
