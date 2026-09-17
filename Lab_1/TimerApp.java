@@ -14,6 +14,7 @@ public class TimerApp extends JFrame {
         setLocationRelativeTo(null);
 
         logic = new TimerLogic(this::addMessage);
+
         createInterface();
     }
 
@@ -85,7 +86,7 @@ public class TimerApp extends JFrame {
             outputArea.setCaretPosition(outputArea.getDocument().getLength());
         });
     }
-
+    //проверка
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TimerApp().setVisible(true));
     }
