@@ -104,14 +104,12 @@ public class TimerApp extends JFrame {
     private void stopDurationTimer() {
         if (durationTimer != null) {
             durationTimer.cancel();
-            durationTimer = null;
         }
     }
 
     private void stopPeriodTimer() {
         if (periodTimer != null) {
             periodTimer.cancel();
-            periodTimer = null;
         }
     }
 
