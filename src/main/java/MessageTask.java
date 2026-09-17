@@ -15,3 +15,7 @@ public class MessageTask extends TimerTask {
         logger.accept(message);
     }
 }
+
+
+
+// мое второе изменение
