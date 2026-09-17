@@ -6,7 +6,7 @@ public class UI extends JFrame {
     private JLabel statusDisplay;
     private JTextArea outputArea;
     private JButton delayButton, durationButton, periodicButton, stopAllButton;
-    private Stopwatch logic; // Наш класс с логикой Timer/TimerTask
+    private Stopwatch logic; // Логика таймеров с колбэками
 
     public UI() {
         setTitle("Мульти-Таймер (Timer & TimerTask)");
@@ -14,7 +14,7 @@ public class UI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Инициализация логики с колбэками
+       
         logic = new Stopwatch(new Stopwatch.StopwatchListener() {
             @Override
             public void onStatusUpdate(String status) {
@@ -57,7 +57,7 @@ public class UI extends JFrame {
 
         stopAllButton.setForeground(Color.RED);
 
-        // Слушатели кнопок (вызов методов из Stopwatch)
+        // Слушатели кнопок 
         delayButton.addActionListener(e -> logic.startDelayTimer(3));
         durationButton.addActionListener(e -> logic.startDurationTimer(5));
         periodicButton.addActionListener(e -> logic.startPeriodicTimer(1.5));
