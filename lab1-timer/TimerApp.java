@@ -179,5 +179,4 @@ public class TimerApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(TimerApp::new);
     }
-    //Press F to pay Respect
 }
