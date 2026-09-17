@@ -179,4 +179,6 @@ public class TimerApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(TimerApp::new);
     }
+
+    // Sweetie Fox is the best actress I`ve ever met
 }
