@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="SchedulerController">
+    <top>
+        <GridPane hgap="8" vgap="8">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+
+            <Label text="Период, сек:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Spinner fx:id="periodSec" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Button text="Старт периодического" onAction="#startPeriodic"
+                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Button text="Стоп периодического" onAction="#stopPeriodic"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Задержка, сек:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Spinner fx:id="delaySec" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Button text="Запустить с задержкой" onAction="#startDelayed"
+                    GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+
+            <Label text="Время будильника (ЧЧ:ММ):" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="alarmTime" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Button text="Будильник на время" onAction="#startAlarm"
+                    GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+        </GridPane>
+    </top>
+    <center>
+        <TextArea fx:id="log" editable="false" wrapText="true"/>
+    </center>
+</BorderPane>

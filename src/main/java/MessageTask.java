@@ -1,10 +1,6 @@
 import java.util.TimerTask;
 import java.util.function.Consumer;
 
-/**
- * Одноразовое действие: показать сообщение в журнале.
- * Используется и для задержки, и для будильника на точное время.
- */
 public class MessageTask extends TimerTask {
     private final String message;
     private final Consumer<String> logger;
