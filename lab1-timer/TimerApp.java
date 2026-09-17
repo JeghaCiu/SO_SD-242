@@ -142,3 +142,41 @@ public class TimerApp {
         startButton.addActionListener(e -> startLaunch());
         resetButton.addActionListener(e -> resetLaunch());
     }
+
+     private void startLaunch() {
+        startButton.setEnabled(false);
+        output.setText("=== ROCKET LAUNCH SEQUENCE STARTED ===\n\n");
+        statusLabel.setText("INITIALIZING LAUNCH SEQUENCE...");
+        timerLabel.setText("T+00");
+
+        // PART: ALEX - Timer 1: delay
+        goTimer = new Timer();
+        goTimer.schedule(new GoSignal(output, statusLabel), 3000);
+
+        // PART: KIRILLOV - Timer 2: period
+        countdownTimer = new Timer();
+        countdownTimer.scheduleAtFixedRate(
+            new CountdownTick(output, timerLabel, statusLabel), 3000, 1000);
+
+        // PART: ALEX - Timer 3: delay + stop
+        liftoffTimer = new Timer();
+        liftoffTimer.schedule(new Liftoff(
+            countdownTimer, goTimer, liftoffTimer,
+            output, timerLabel, statusLabel, startButton), 13000);
+    }
+
+    private void resetLaunch() {
+        if (goTimer != null) goTimer.cancel();
+        if (countdownTimer != null) countdownTimer.cancel();
+        if (liftoffTimer != null) liftoffTimer.cancel();
+
+        timerLabel.setText("T+00");
+        statusLabel.setText("SYSTEM READY");
+        output.setText("=== ROCKET LAUNCH SYSTEM ===\nSystem reset.\nPress START LAUNCH to begin.\n\n");
+        startButton.setEnabled(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(TimerApp::new);
+    }
+}
