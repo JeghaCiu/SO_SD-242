@@ -34,7 +34,7 @@ public class UI extends JFrame {
         JPanel main = new JPanel(new BorderLayout(10, 10));
         main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel title = new JLabel("Приложение с несколькими таймерами", SwingConstants.CENTER);
+        JLabel title = new JLabel("Приложение таймеров", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 18));
         main.add(title, BorderLayout.NORTH);
 
@@ -57,7 +57,6 @@ public class UI extends JFrame {
 
         stopAllButton.setForeground(Color.RED);
 
-        // Слушатели кнопок 
         delayButton.addActionListener(e -> logic.startDelayTimer(3));
         durationButton.addActionListener(e -> logic.startDurationTimer(5));
         periodicButton.addActionListener(e -> logic.startPeriodicTimer(1.5));
