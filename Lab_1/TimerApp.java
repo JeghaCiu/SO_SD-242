@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//удалить все рудиментарные методы
 public class TimerApp extends JFrame {
 
     private JTextArea outputArea;
