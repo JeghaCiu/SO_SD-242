@@ -22,7 +22,7 @@ public class TimerApp extends JFrame {
         main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel title = new JLabel("Таймеры крутые", SwingConstants.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 20));
+        title.setFont(new Font("Monospaced", Font.BOLD, 20));
         main.add(title, BorderLayout.NORTH);
 
         JPanel controls = new JPanel(new GridLayout(4, 1, 5, 5));
