@@ -21,10 +21,7 @@ public class TimerApp extends JFrame {
         JPanel main = new JPanel(new BorderLayout(10, 10));
         main.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel title = new JLabel(
-                "Планировщик задач с использованием Timer",
-                SwingConstants.CENTER
-        );
+        JLabel title = new JLabel("Планировщик задач с использованием Timer", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         main.add(title, BorderLayout.NORTH);
 
@@ -59,7 +56,6 @@ public class TimerApp extends JFrame {
 
     private JPanel createRow(String text, JTextField field, java.awt.event.ActionListener action) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
         JButton button = new JButton("Запустить");
 
         panel.add(new JLabel(text));
@@ -86,9 +82,7 @@ public class TimerApp extends JFrame {
     private void addMessage(String text) {
         SwingUtilities.invokeLater(() -> {
             outputArea.append(text + "\n");
-            outputArea.setCaretPosition(
-                    outputArea.getDocument().getLength()
-            );
+            outputArea.setCaretPosition(outputArea.getDocument().getLength());
         });
     }
 
