@@ -34,14 +34,11 @@ public class TimerApp extends JFrame {
         durationField = new JTextField("10", 5);
         periodField = new JTextField("2", 5);
 
-        controls.add(createRow("1. Выполнить через:", delayField,
-                e -> start(delayField, 1)));
+        controls.add(createRow("1. Выполнить через:", delayField, e -> start(delayField, 1)));
 
-        controls.add(createRow("2. Работать в течение:", durationField,
-                e -> start(durationField, 2)));
+        controls.add(createRow("2. Работать в течение:", durationField, e -> start(durationField, 2)));
 
-        controls.add(createRow("3. Период:", periodField,
-                e -> start(periodField, 3)));
+        controls.add(createRow("3. Период:", periodField, e -> start(periodField, 3)));
 
         JButton stop = new JButton("Остановить все таймеры");
         stop.addActionListener(e -> logic.stopAllTimers());
@@ -60,8 +57,7 @@ public class TimerApp extends JFrame {
         setContentPane(main);
     }
 
-    private JPanel createRow(String text, JTextField field,
-                             java.awt.event.ActionListener action) {
+    private JPanel createRow(String text, JTextField field, java.awt.event.ActionListener action) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JButton button = new JButton("Запустить");
