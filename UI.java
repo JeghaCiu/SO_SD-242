@@ -6,7 +6,7 @@ public class UI extends JFrame {
     private JLabel statusDisplay;
     private JTextArea outputArea;
     private JButton delayButton, durationButton, periodicButton, stopAllButton;
-    private Stopwatch logic; // Логика таймеров с колбэками
+    private Stopwatch logic; 
 
     public UI() {
         setTitle("Мульти-Таймер (Timer & TimerTask)");
