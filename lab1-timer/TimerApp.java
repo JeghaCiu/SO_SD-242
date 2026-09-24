@@ -179,6 +179,6 @@ public class TimerApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(TimerApp::new);
     }
-
-
 }
+
+// Comment line by Constantin
