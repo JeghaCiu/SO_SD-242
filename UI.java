@@ -38,7 +38,9 @@ public class UI extends JFrame {
         title.setFont(new Font("Arial", Font.BOLD, 18));
         main.add(title, BorderLayout.NORTH);
 
-        // Центральная панель
+        // Центральная панель 
+        //ASDSADSADASD
+        
         JPanel centerPanel = new JPanel(new BorderLayout(10, 10));
 
         // Дисплей статуса
